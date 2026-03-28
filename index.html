@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ClearMarketReport — AI Market Analysis for Small Business</title>
+<meta name="description" content="Enter your industry and city. Get a professional 15-page local market analysis report in minutes. No consultant. No waiting. $147 one-time.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0a0e1a;
+    --navy-mid: #111827;
+    --navy-light: #1c2537;
+    --navy-border: #2a3550;
+    --amber: #d4922a;
+    --amber-light: #f0b84a;
+    --amber-dim: #7a5218;
+    --cream: #f5f0e8;
+    --cream-dim: #b8b0a0;
+    --white: #ffffff;
+    --red-alert: #c0392b;
+    --green-data: #2e8b57;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+    --serif: 'Playfair Display', serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--cream);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── TICKER ── */
+  .ticker-wrap {
+    background: var(--amber);
+    padding: 6px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    border-bottom: 2px solid var(--amber-light);
+  }
+  .ticker-track {
+    display: inline-block;
+    animation: ticker 35s linear infinite;
+  }
+  .ticker-item {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--navy);
+    padding: 0 40px;
+    font-weight: 500;
+    letter-spacing: .04em;
+  }
+  .ticker-item span { opacity: .6; margin-right: 8px; }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ── NAV ── */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    border-bottom: 1px solid var(--navy-border);
+    position: sticky;
+    top: 0;
+    background: var(--navy);
+    z-index: 100;
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 20px;
+    color: var(--white);
+    letter-spacing: -.01em;
+  }
+  .nav-logo em {
+    color: var(--amber);
+    font-style: normal;
+  }
+  .nav-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--cream-dim);
+    text-align: right;
+    line-height: 1.8;
+  }
+  .nav-cta {
+    background: var(--amber);
+    color: var(--navy);
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 10px 22px;
+    text-decoration: none;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    transition: background .15s;
+  }
+  .nav-cta:hover { background: var(--amber-light); }
+
+  /* ── HERO ── */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 0;
+    min-height: 88vh;
+    border-bottom: 1px solid var(--navy-border);
+  }
+  .hero-left {
+    padding: 70px 60px;
+    border-right: 1px solid var(--navy-border);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .hero-kicker {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--amber);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-kicker::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--amber);
+  }
+  .hero-headline {
+    font-family: var(--serif);
+    font-size: clamp(42px, 5.5vw, 76px);
+    line-height: 1.05;
+    color: var(--white);
+    font-weight: 900;
+    letter-spacing: -.02em;
+    margin-bottom: 32px;
+  }
+  .hero-headline .amber { color: var(--amber); }
+  .hero-sub {
+    font-size: 17px;
+    color: var(--cream-dim);
+    line-height: 1.7;
+    max-width: 520px;
+    margin-bottom: 48px;
+    font-weight: 300;
+  }
+  .hero-bottom {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding-top: 32px;
+    border-top: 1px solid var(--navy-border);
+  }
+  .hero-stat { }
+  .hero-stat-num {
+    font-family: var(--serif);
+    font-size: 36px;
+    color: var(--amber);
+    line-height: 1;
+    font-weight: 700;
+  }
+  .hero-stat-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--cream-dim);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    margin-top: 4px;
+  }
+  .hero-divider {
+    width: 1px;
+    height: 48px;
+    background: var(--navy-border);
+  }
+
+  /* ── HERO RIGHT: ORDER PANEL ── */
+  .hero-right {
+    padding: 40px 36px;
+    display: flex;
+    flex-direction: column;
+    background: var(--navy-mid);
+  }
+  .panel-header {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--amber);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--navy-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .panel-live {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--green-data);
+  }
+  .panel-live::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green-data);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+  .form-group { margin-bottom: 20px; }
+  .form-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--cream-dim);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .form-input, .form-select {
+    width: 100%;
+    background: var(--navy-light);
+    border: 1px solid var(--navy-border);
+    color: var(--cream);
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 12px 14px;
+    outline: none;
+    appearance: none;
+    transition: border-color .15s;
+  }
+  .form-input:focus, .form-select:focus { border-color: var(--amber); }
+  .form-input::placeholder { color: var(--navy-border); }
+
+  .price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin: 24px 0 20px;
+    padding: 16px 0;
+    border-top: 1px solid var(--navy-border);
+    border-bottom: 1px solid var(--navy-border);
+  }
+  .price-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--cream-dim);
+    text-transform: uppercase;
+    letter-spacing: .06em;
+  }
+  .price-amount {
+    font-family: var(--serif);
+    font-size: 32px;
+    color: var(--amber-light);
+    font-weight: 700;
+    line-height: 1;
+  }
+  .price-once {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--cream-dim);
+    margin-left: 6px;
+  }
+
+  .btn-order {
+    display: block;
+    width: 100%;
+    background: var(--amber);
+    color: var(--navy);
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 16px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background .15s;
+  }
+  .btn-order:hover { background: var(--amber-light); }
+
+  .panel-guarantee {
+    margin-top: 16px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--cream-dim);
+    text-align: center;
+    line-height: 1.6;
+    letter-spacing: .03em;
+  }
+
+  /* ── WHAT YOU GET ── */
+  .section {
+    padding: 80px 60px;
+    border-bottom: 1px solid var(--navy-border);
+  }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin-bottom: 52px;
+  }
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--amber-dim);
+    letter-spacing: .1em;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(28px, 3vw, 42px);
+    color: var(--white);
+    font-weight: 700;
+    letter-spacing: -.01em;
+  }
+
+  .report-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--navy-border);
+    border: 1px solid var(--navy-border);
+  }
+  .report-cell {
+    background: var(--navy);
+    padding: 28px 26px;
+    transition: background .15s;
+  }
+  .report-cell:hover { background: var(--navy-light); }
+  .cell-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--amber-dim);
+    letter-spacing: .1em;
+    margin-bottom: 12px;
+  }
+  .cell-title {
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--white);
+    margin-bottom: 8px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .cell-desc {
+    font-size: 13px;
+    color: var(--cream-dim);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* ── SAMPLE REPORT ── */
+  .sample-section {
+    padding: 80px 60px;
+    border-bottom: 1px solid var(--navy-border);
+    background: var(--navy-mid);
+  }
+  .sample-doc {
+    margin-top: 40px;
+    background: var(--navy-light);
+    border: 1px solid var(--navy-border);
+    max-width: 760px;
+  }
+  .doc-topbar {
+    background: var(--navy-border);
+    padding: 10px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .doc-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--amber);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .doc-meta {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--cream-dim);
+  }
+  .doc-body { padding: 36px 40px; }
+  .doc-h1 {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--white);
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .doc-sub {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--amber);
+    letter-spacing: .06em;
+    margin-bottom: 28px;
+  }
+  .doc-divider {
+    border: none;
+    border-top: 1px solid var(--navy-border);
+    margin: 20px 0;
+  }
+  .doc-section-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--amber-dim);
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    margin-bottom: 10px;
+  }
+  .doc-text {
+    font-size: 13px;
+    color: var(--cream-dim);
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-weight: 300;
+  }
+  .doc-data-row {
+    display: flex;
+    gap: 0;
+    margin-bottom: 1px;
+  }
+  .ddr-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--cream-dim);
+    flex: 1;
+    padding: 7px 12px;
+    background: var(--navy);
+    border-right: 1px solid var(--navy-border);
+  }
+  .ddr-val {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--amber-light);
+    min-width: 120px;
+    padding: 7px 12px;
+    background: var(--navy);
+    text-align: right;
+  }
+  .doc-blur {
+    filter: blur(4px);
+    user-select: none;
+    opacity: .5;
+  }
+  .doc-unlock {
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid var(--navy-border);
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--cream-dim);
+    letter-spacing: .04em;
+  }
+  .doc-unlock a {
+    color: var(--amber);
+    text-decoration: none;
+  }
+  .doc-unlock a:hover { color: var(--amber-light); }
+
+  /* ── WHO IT'S FOR ── */
+  .industries-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--navy-border);
+    border: 1px solid var(--navy-border);
+  }
+  .industry-cell {
+    background: var(--navy);
+    padding: 22px 20px;
+    cursor: pointer;
+    transition: background .15s;
+  }
+  .industry-cell:hover { background: var(--navy-light); }
+  .industry-cell.active { background: var(--amber-dim); }
+  .ind-name {
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--white);
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .ind-example {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--cream-dim);
+    letter-spacing: .04em;
+  }
+
+  /* ── PROCESS ── */
+  .process-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--navy-border);
+    margin-top: 40px;
+  }
+  .process-step {
+    padding: 32px 28px;
+    border-right: 1px solid var(--navy-border);
+    position: relative;
+  }
+  .process-step:last-child { border-right: none; }
+  .step-num {
+    font-family: var(--mono);
+    font-size: 42px;
+    color: var(--navy-border);
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .step-title {
+    font-family: var(--serif);
+    font-size: 18px;
+    color: var(--white);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .step-desc {
+    font-size: 13px;
+    color: var(--cream-dim);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* ── FAQ ── */
+  .faq-list { max-width: 720px; }
+  .faq-item {
+    border-bottom: 1px solid var(--navy-border);
+    padding: 24px 0;
+  }
+  .faq-item:first-child { border-top: 1px solid var(--navy-border); }
+  .faq-q {
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--white);
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .faq-a {
+    font-size: 14px;
+    color: var(--cream-dim);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ── FINAL CTA ── */
+  .cta-section {
+    padding: 100px 60px;
+    text-align: center;
+    background: var(--navy-mid);
+    border-bottom: 1px solid var(--navy-border);
+  }
+  .cta-eyebrow {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--amber-dim);
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .cta-headline {
+    font-family: var(--serif);
+    font-size: clamp(34px, 4.5vw, 60px);
+    color: var(--white);
+    font-weight: 900;
+    letter-spacing: -.02em;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .cta-sub {
+    font-size: 16px;
+    color: var(--cream-dim);
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+  .btn-cta-large {
+    display: inline-block;
+    background: var(--amber);
+    color: var(--navy);
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 18px 48px;
+    text-decoration: none;
+    transition: background .15s;
+  }
+  .btn-cta-large:hover { background: var(--amber-light); }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 32px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--amber-dim);
+    letter-spacing: .05em;
+    border-top: 1px solid var(--navy-border);
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeIn .7s ease forwards;
+  }
+  .fade-in:nth-child(2) { animation-delay: .1s; }
+  .fade-in:nth-child(3) { animation-delay: .2s; }
+  .fade-in:nth-child(4) { animation-delay: .3s; }
+  @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-meta { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 48px 24px; border-right: none; border-bottom: 1px solid var(--navy-border); }
+    .hero-right { padding: 32px 24px; }
+    .section, .sample-section { padding: 56px 24px; }
+    .report-grid { grid-template-columns: 1fr 1fr; }
+    .industries-grid { grid-template-columns: 1fr 1fr; }
+    .process-row { grid-template-columns: 1fr 1fr; }
+    .cta-section { padding: 64px 24px; }
+    footer { padding: 24px; flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <span class="ticker-item"><span>HVAC ▸</span> Indianapolis market — 847 active businesses, avg revenue $1.2M</span>
+    <span class="ticker-item"><span>RESTAURANT ▸</span> Denver market — 2,340 active businesses, 12% growth YoY</span>
+    <span class="ticker-item"><span>PLUMBING ▸</span> Dallas market — 1,102 active businesses, labor shortage flagged</span>
+    <span class="ticker-item"><span>LANDSCAPING ▸</span> Phoenix market — seasonal demand peaks April–October</span>
+    <span class="ticker-item"><span>AUTO REPAIR ▸</span> Columbus market — 423 competitors, pricing pressure moderate</span>
+    <span class="ticker-item"><span>HVAC ▸</span> Indianapolis market — 847 active businesses, avg revenue $1.2M</span>
+    <span class="ticker-item"><span>RESTAURANT ▸</span> Denver market — 2,340 active businesses, 12% growth YoY</span>
+    <span class="ticker-item"><span>PLUMBING ▸</span> Dallas market — 1,102 active businesses, labor shortage flagged</span>
+    <span class="ticker-item"><span>LANDSCAPING ▸</span> Phoenix market — seasonal demand peaks April–October</span>
+    <span class="ticker-item"><span>AUTO REPAIR ▸</span> Columbus market — 423 competitors, pricing pressure moderate</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Clear<em>Market</em>Report</div>
+  <div class="nav-meta">
+    AI-Generated Market Intelligence<br>
+    Reports delivered in &lt; 10 minutes
+  </div>
+  <a href="#order" class="nav-cta">Get Your Report →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div>
+      <div class="hero-kicker fade-in">Local Market Intelligence</div>
+      <h1 class="hero-headline fade-in">
+        Know your market<br>
+        before your<br>
+        <span class="amber">competitors do.</span>
+      </h1>
+      <p class="hero-sub fade-in">
+        A professional 15-page market analysis report for your industry and city — generated in minutes by AI, not a $5,000 consultant. Competitive landscape, pricing benchmarks, demand trends, and local opportunity gaps. One price. No subscription.
+      </p>
+    </div>
+    <div class="hero-bottom fade-in">
+      <div class="hero-stat">
+        <div class="hero-stat-num">15+</div>
+        <div class="hero-stat-label">Pages of analysis</div>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">&lt;10</div>
+        <div class="hero-stat-label">Minutes to deliver</div>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">200+</div>
+        <div class="hero-stat-label">Industries covered</div>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">$147</div>
+        <div class="hero-stat-label">One-time, no sub</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORDER PANEL -->
+  <div class="hero-right" id="order">
+    <div class="panel-header">
+      <span>Order Your Report</span>
+      <span class="panel-live">Live</span>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Your industry</label>
+      <input type="text" class="form-input" placeholder="e.g. HVAC, Restaurant, Plumbing..." id="industry-input">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Your city + state</label>
+      <input type="text" class="form-input" placeholder="e.g. Indianapolis, IN" id="city-input">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Your email — report delivered here</label>
+      <input type="email" class="form-input" placeholder="you@yourbusiness.com" id="email-input">
+    </div>
+
+    <div class="price-row">
+      <div>
+        <div class="price-label">Report total</div>
+        <div style="font-family:var(--mono);font-size:11px;color:var(--green-data);margin-top:3px;">✓ No subscription. No recurring charges.</div>
+      </div>
+      <div>
+        <span class="price-amount">$147</span>
+        <span class="price-once">one-time</span>
+      </div>
+    </div>
+
+    <a href="YOUR_STRIPE_PAYMENT_LINK" class="btn-order" id="order-btn">
+      Order Report Now →
+    </a>
+
+    <div class="panel-guarantee">
+      100% money-back guarantee if your report<br>
+      doesn't arrive within 15 minutes.
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S IN THE REPORT -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">01 —</span>
+    <h2 class="section-title">What's inside every report</h2>
+  </div>
+  <div class="report-grid">
+    <div class="report-cell">
+      <div class="cell-num">01</div>
+      <div class="cell-title">Local competitive landscape</div>
+      <div class="cell-desc">How many competitors are operating in your city, how they're positioned, and where the gaps are.</div>
+    </div>
+    <div class="report-cell">
+      <div class="cell-num">02</div>
+      <div class="cell-title">Pricing benchmarks</div>
+      <div class="cell-desc">What the market charges for your services. Where you're likely over or underpriced relative to local demand.</div>
+    </div>
+    <div class="report-cell">
+      <div class="cell-num">03</div>
+      <div class="cell-title">Demand trend analysis</div>
+      <div class="cell-desc">Is your market growing, flat, or contracting? Seasonal patterns, economic drivers, and 12-month outlook.</div>
+    </div>
+    <div class="report-cell">
+      <div class="cell-num">04</div>
+      <div class="cell-title">Customer demographics</div>
+      <div class="cell-desc">Who is buying in your market — household income, age brackets, spending behavior, and geographic concentration.</div>
+    </div>
+    <div class="report-cell">
+      <div class="cell-num">05</div>
+      <div class="cell-title">Opportunity gap analysis</div>
+      <div class="cell-desc">Underserved customer segments, unmet service needs, and specific openings your competitors have left on the table.</div>
+    </div>
+    <div class="report-cell">
+      <div class="cell-num">06</div>
+      <div class="cell-title">Actionable recommendations</div>
+      <div class="cell-desc">Three to five specific moves you can make in the next 90 days based on your market's current conditions.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SAMPLE REPORT -->
+<section class="sample-section">
+  <div class="section-header">
+    <span class="section-num">02 —</span>
+    <h2 class="section-title">Sample report excerpt</h2>
+  </div>
+  <div class="sample-doc">
+    <div class="doc-topbar">
+      <div class="doc-title">ClearMarketReport — HVAC Industry / Indianapolis, IN</div>
+      <div class="doc-meta">Generated 03.27.2026 · 16 pages</div>
+    </div>
+    <div class="doc-body">
+      <div class="doc-h1">HVAC Market Analysis — Indianapolis Metro</div>
+      <div class="doc-sub">CONFIDENTIAL · PREPARED FOR: SAMPLE BUSINESS OWNER</div>
+      <hr class="doc-divider">
+      <div class="doc-section-title">Executive Summary</div>
+      <div class="doc-text">The Indianapolis HVAC market presents a moderately competitive landscape with 847 licensed contractors operating in the metro area. Demand is trending upward driven by aging residential infrastructure (median home age: 42 years) and commercial construction activity. The market supports pricing 8–12% above national averages for residential service calls.</div>
+      <hr class="doc-divider">
+      <div class="doc-section-title">Key Market Indicators</div>
+      <div class="doc-data-row"><div class="ddr-label">Active licensed contractors (Marion Co.)</div><div class="ddr-val">847</div></div>
+      <div class="doc-data-row"><div class="ddr-label">Avg residential service call rate</div><div class="ddr-val">$185–$240/hr</div></div>
+      <div class="doc-data-row"><div class="ddr-label">New construction permits YTD</div><div class="ddr-val">+14% YoY</div></div>
+      <div class="doc-data-row"><div class="ddr-label">Median household income (target demo)</div><div class="ddr-val">$68,400</div></div>
+      <div class="doc-data-row doc-blur"><div class="ddr-label">Largest competitor by review volume</div><div class="ddr-val">████████</div></div>
+      <div class="doc-data-row doc-blur"><div class="ddr-label">Primary underserved zip codes</div><div class="ddr-val">████, ████</div></div>
+      <div class="doc-data-row doc-blur"><div class="ddr-label">90-day opportunity recommendation</div><div class="ddr-val">████████████</div></div>
+    </div>
+    <div class="doc-unlock">
+      Full 16-page report unlocks after purchase. &nbsp;·&nbsp; <a href="#order">Order yours for $147 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">03 —</span>
+    <h2 class="section-title">Works for any local business</h2>
+  </div>
+  <div class="industries-grid">
+    <div class="industry-cell"><div class="ind-name">HVAC</div><div class="ind-example">Heating, cooling, ductwork</div></div>
+    <div class="industry-cell"><div class="ind-name">Restaurant</div><div class="ind-example">Dining, fast casual, catering</div></div>
+    <div class="industry-cell"><div class="ind-name">Plumbing</div><div class="ind-example">Residential & commercial</div></div>
+    <div class="industry-cell"><div class="ind-name">Auto Repair</div><div class="ind-example">Service, body, tires</div></div>
+    <div class="industry-cell"><div class="ind-name">Landscaping</div><div class="ind-example">Lawn, design, irrigation</div></div>
+    <div class="industry-cell"><div class="ind-name">Roofing</div><div class="ind-example">Residential, commercial</div></div>
+    <div class="industry-cell"><div class="ind-name">Dental</div><div class="ind-example">General, specialist practices</div></div>
+    <div class="industry-cell"><div class="ind-name">Retail</div><div class="ind-example">Specialty, boutique, hardware</div></div>
+    <div class="industry-cell"><div class="ind-name">Electrical</div><div class="ind-example">Residential & commercial</div></div>
+    <div class="industry-cell"><div class="ind-name">Fitness</div><div class="ind-example">Gym, studio, personal training</div></div>
+    <div class="industry-cell"><div class="ind-name">Childcare</div><div class="ind-example">Daycare, after-school</div></div>
+    <div class="industry-cell"><div class="ind-name">Your industry</div><div class="ind-example">200+ categories supported</div></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" style="background:var(--navy-mid)">
+  <div class="section-header">
+    <span class="section-num">04 —</span>
+    <h2 class="section-title">How it works</h2>
+  </div>
+  <div class="process-row">
+    <div class="process-step">
+      <div class="step-num">01</div>
+      <div class="step-title">Enter your details</div>
+      <div class="step-desc">Tell us your industry and city. Takes 60 seconds. No account needed.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">02</div>
+      <div class="step-title">Pay once</div>
+      <div class="step-desc">$147 flat. Processed securely through Stripe. No subscription. No hidden fees.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">03</div>
+      <div class="step-title">AI generates your report</div>
+      <div class="step-desc">Our AI analyzes your local market — competitors, pricing, demand, opportunities.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">04</div>
+      <div class="step-title">Report arrives in minutes</div>
+      <div class="step-desc">A professional 15-page PDF lands in your inbox within 10 minutes. Start using it today.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">05 —</span>
+    <h2 class="section-title">Common questions</h2>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q">How is this different from googling my market?</div>
+      <div class="faq-a">Googling gives you fragments — a Yelp page here, a news article there. Our report synthesizes local competitor data, pricing benchmarks, demographic analysis, and demand trends into a single structured document written specifically for your industry and city. It would take you 8–12 hours to assemble this manually.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Is the data actually local — or just generic industry stats?</div>
+      <div class="faq-a">The report is built around your specific city and industry combination. Competitor counts, pricing ranges, demographic data, and opportunity analysis are all localized. A report for HVAC in Indianapolis will look very different from one for HVAC in Miami.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What if I'm not happy with it?</div>
+      <div class="faq-a">Full refund, no questions asked, within 48 hours of delivery. We'd rather give you your $147 back than have you walk away unsatisfied.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How current is the data?</div>
+      <div class="faq-a">Reports reflect current market conditions as of the date generated. We recommend re-ordering annually or when entering a new market.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Can I order reports for multiple cities or industries?</div>
+      <div class="faq-a">Yes — each report is $147. Many owners order one for their current market and one for a market they're considering expanding into.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-section">
+  <div class="cta-eyebrow">Ready to know your market</div>
+  <h2 class="cta-headline">Stop guessing.<br>Start knowing.</h2>
+  <p class="cta-sub">15 pages of local market intelligence. Delivered in under 10 minutes. $147, one time.</p>
+  <a href="#order" class="btn-cta-large">Get Your Market Report →</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>© 2026 ClearMarketReport · All rights reserved</div>
+  <div>AI-powered · Delivered by email · 100% money-back guarantee</div>
+</footer>
+
+<script>
+  // Smooth scroll order button with prefill
+  document.getElementById('order-btn').addEventListener('click', function(e) {
+    const industry = document.getElementById('industry-input').value.trim();
+    const city = document.getElementById('city-input').value.trim();
+    const email = document.getElementById('email-input').value.trim();
+    if (!industry || !city || !email) {
+      e.preventDefault();
+      if (!industry) document.getElementById('industry-input').focus();
+      else if (!city) document.getElementById('city-input').focus();
+      else document.getElementById('email-input').focus();
+      return;
+    }
+    // Pass to Stripe payment link with metadata
+    this.href = `YOUR_STRIPE_PAYMENT_LINK?prefilled_email=${encodeURIComponent(email)}&client_reference_id=${encodeURIComponent(industry+'|'+city)}`;
+  });
+
+  // Animate sections on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.report-cell, .process-step, .industry-cell').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(12px)';
+    el.style.transition = 'opacity .5s ease, transform .5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
