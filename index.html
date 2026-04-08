@@ -1,1 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClearMarketReport — AI Market Analysis for Small Business</title>
+  <meta name="description" content="Enter your industry and city. Get a professional local market analysis report in under 10 minutes. Competitive landscape, pricing benchmarks, and opportunity gaps. $147 one-time.">
+  <meta name="google-site-verification" content="EuuffUXpLydKWqOByJgwiQceCe65csB_aTrYNtDLhvY" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root {
+      --navy: #0a0e1a;
+      --navy-mid: #111827;
+      --navy-light: #1c2537;
+      --navy-border: #2a3550;
+      --amber: #d4922a;
+      --amber-light: #f0b84a;
+      --amber-dim: #7a5218;
+      --cream: #f5f0e8;
+      --cream-dim: #b8b0a0;
+      --white: #ffffff;
+      --red-alert: #c0392b;
+      --green-data: #2e8b57;
+      --mono: 'IBM Plex Mono', monospace;
+      --sans: 'IBM Plex Sans', sans-serif;
+      --serif: 'Playfair Display', serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); font-weight: 300; background: var(--navy); color: var(--cream); line-height: 1.6; overflow-x: hidden; }
+
+    a { color: var(--amber); text-decoration: none; }
+    a:hover { color: var(--amber-light); }
+
+    /* ── TICKER ── */
+    .ticker-wrap { background: var(--navy-light); border-bottom: 1px solid var(--navy-border); overflow: hidden; padding: 8px 0; }
+    .ticker { display: flex; animation: ticker-scroll 40s linear infinite; white-space: nowrap; }
+    .ticker-item { font-family: var(--mono); font-size: 11px; color: var(--cream-dim); padding: 0 32px; }
+    .ticker-item span { color: var(--amber); margin-right: 8px; }
+    @keyframes ticker-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* ── NAV ── */
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 60px; border-bottom: 1px solid var(--navy-border); position: sticky; top: 0; background: var(--navy); z-index: 100; }
+    .nav-logo { font-family: var(--serif); font-size: 20px; color: var(--white); letter-spacing: -.02em; }
+    .nav-logo em { color: var(--amber); font-style: normal; }
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-links a { font-family: var(--mono); font-size: 11px; color: var(--cream-dim); letter-spacing: .08em; text-transform: uppercase; transition: color .15s; }
+    .nav-links a:hover { color: var(--amber); }
+    .nav-cta { background: var(--amber); color: var(--navy); font-family: var(--mono); font-size: 11px; font-weight: 500; padding: 10px 24px; letter-spacing: .08em; text-transform: uppercase; transition: background .15s; }
+    .nav-cta:hover { background: var(--amber-light); color: var(--navy); }
+
+    /* ── HERO ── */
+    .hero { position: relative; min-height: 80vh; display: flex; align-items: center; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; z-index: 0; }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; opacity: 0.18; }
+    .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--navy) 0%, transparent 60%, var(--navy) 100%); }
+    .hero-content { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 80px 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .hero-left {}
+    .hero-kicker { font-family: var(--mono); font-size: 11px; color: var(--amber); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+    .hero-kicker::before { content: ''; width: 24px; height: 1px; background: var(--amber); display: inline-block; }
+    .hero-title { font-family: var(--serif); font-size: clamp(40px, 5vw, 64px); font-weight: 900; line-height: 1.05; color: var(--white); margin-bottom: 24px; }
+    .hero-title em { color: var(--amber); font-style: normal; }
+    .hero-sub { font-size: 17px; color: var(--cream-dim); line-height: 1.7; margin-bottom: 36px; max-width: 480px; }
+    .hero-cta { display: inline-block; background: var(--amber); color: var(--navy); font-family: var(--mono); font-size: 12px; font-weight: 500; padding: 16px 36px; letter-spacing: .08em; text-transform: uppercase; transition: background .15s; }
+    .hero-cta:hover { background: var(--amber-light); color: var(--navy); }
+    .hero-stats { display: flex; gap: 32px; margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--navy-border); }
+    .hero-stat-num { font-family: var(--serif); font-size: 32px; color: var(--amber); font-weight: 700; line-height: 1; }
+    .hero-stat-label { font-family: var(--mono); font-size: 10px; color: var(--cream-dim); letter-spacing: .08em; text-transform: uppercase; margin-top: 4px; }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 80px 60px; max-width: 1100px; margin: 0 auto; }
+    .section-label { font-family: var(--mono); font-size: 10px; color: var(--amber); letter-spacing: .15em; text-transform: uppercase; margin-bottom: 12px; }
+    .section-title { font-family: var(--serif); font-size: clamp(28px, 3vw, 40px); font-weight: 900; color: var(--white); line-height: 1.15; margin-bottom: 16px; }
+    .section-sub { font-size: 16px; color: var(--cream-dim); max-width: 600px; line-height: 1.7; }
+    .divider { border: none; border-top: 1px solid var(--navy-border); margin: 0; }
+
+    /* ── ORDER SECTION ── */
+    .order-wrap { background: var(--navy-mid); border: 1px solid var(--navy-border); padding: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; margin-top: 40px; }
+    .order-form-group { margin-bottom: 20px; }
+    .order-label { font-family: var(--mono); font-size: 10px; color: var(--amber); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 8px; display: block; }
+    .order-input { width: 100%; background: var(--navy); border: 1px solid var(--navy-border); color: var(--cream); font-family: var(--sans); font-size: 15px; padding: 12px 16px; outline: none; transition: border-color .15s; }
+    .order-input:focus { border-color: var(--amber); }
+    .order-input::placeholder { color: var(--navy-border); }
+    .order-summary { border-top: 1px solid var(--navy-border); padding-top: 20px; margin-top: 20px; }
+    .order-summary-row { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 12px; color: var(--cream-dim); margin-bottom: 8px; }
+    .order-summary-total { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 16px; font-weight: 500; color: var(--white); margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--navy-border); }
+    .order-btn { display: block; width: 100%; background: var(--amber); color: var(--navy); font-family: var(--mono); font-size: 12px; font-weight: 500; padding: 18px; letter-spacing: .08em; text-transform: uppercase; text-align: center; margin-top: 20px; transition: background .15s; }
+    .order-btn:hover { background: var(--amber-light); color: var(--navy); }
+    .order-guarantee { font-family: var(--mono); font-size: 10px; color: var(--cream-dim); text-align: center; margin-top: 12px; letter-spacing: .04em; }
+    .order-right-title { font-family: var(--serif); font-size: 24px; color: var(--white); margin-bottom: 24px; }
+    .order-feature { display: flex; gap: 16px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--navy-border); }
+    .order-feature:last-child { border-bottom: none; }
+    .order-feature-num { font-family: var(--mono); font-size: 11px; color: var(--amber); min-width: 24px; padding-top: 2px; }
+    .order-feature-title { font-size: 14px; font-weight: 500; color: var(--white); margin-bottom: 4px; }
+    .order-feature-desc { font-size: 13px; color: var(--cream-dim); line-height: 1.6; }
+    .live-badge { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 10px; color: var(--green-data); letter-spacing: .08em; margin-bottom: 20px; }
+    .live-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--green-data); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .4; } }
+
+    /* ── WHAT'S INSIDE ── */
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--navy-border); margin-top: 40px; }
+    .feature-card { background: var(--navy); padding: 32px; }
+    .feature-num { font-family: var(--mono); font-size: 10px; color: var(--amber); letter-spacing: .1em; margin-bottom: 16px; }
+    .feature-title { font-size: 16px; font-weight: 500; color: var(--white); margin-bottom: 10px; }
+    .feature-desc { font-size: 14px; color: var(--cream-dim); line-height: 1.7; }
+
+    /* ── SAMPLE ── */
+    .sample-wrap { background: var(--navy-mid); border: 1px solid var(--navy-border); padding: 40px; margin-top: 40px; font-family: var(--mono); }
+    .sample-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--navy-border); }
+    .sample-co { font-size: 13px; color: var(--amber); letter-spacing: .06em; text-transform: uppercase; }
+    .sample-meta { font-size: 10px; color: var(--cream-dim); letter-spacing: .04em; margin-top: 4px; }
+    .sample-title { font-family: var(--serif); font-size: 22px; color: var(--white); margin: 20px 0 8px; }
+    .sample-conf { font-size: 10px; color: var(--cream-dim); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 24px; }
+    .sample-section-title { font-size: 11px; color: var(--amber); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 16px; }
+    .sample-body { font-family: var(--sans); font-size: 14px; color: var(--cream-dim); line-height: 1.8; margin-bottom: 24px; }
+    .sample-data-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--navy-border); margin: 24px 0; }
+    .sample-data-cell { background: var(--navy); padding: 16px; }
+    .sample-data-label { font-size: 10px; color: var(--cream-dim); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 6px; }
+    .sample-data-val { font-size: 18px; color: var(--white); font-weight: 500; }
+    .sample-redacted { background: var(--navy-border); color: transparent; border-radius: 2px; user-select: none; }
+    .sample-cta { text-align: center; padding-top: 24px; border-top: 1px solid var(--navy-border); font-family: var(--sans); font-size: 14px; color: var(--cream-dim); }
+    .sample-cta a { color: var(--amber); }
+
+    /* ── INDUSTRIES ── */
+    .industries-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--navy-border); margin-top: 40px; }
+    .industry-card { background: var(--navy); padding: 24px; }
+    .industry-name { font-size: 15px; font-weight: 500; color: var(--white); margin-bottom: 4px; }
+    .industry-sub { font-size: 12px; color: var(--cream-dim); }
+
+    /* ── HOW IT WORKS ── */
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--navy-border); margin-top: 40px; }
+    .step { background: var(--navy); padding: 32px; }
+    .step-num { font-family: var(--mono); font-size: 28px; color: var(--amber); font-weight: 500; line-height: 1; margin-bottom: 16px; }
+    .step-title { font-size: 15px; font-weight: 500; color: var(--white); margin-bottom: 8px; }
+    .step-desc { font-size: 13px; color: var(--cream-dim); line-height: 1.7; }
+
+    /* ── FAQ ── */
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--navy-border); margin-top: 40px; }
+    .faq-item { background: var(--navy); padding: 32px; }
+    .faq-q { font-size: 15px; font-weight: 500; color: var(--white); margin-bottom: 12px; }
+    .faq-a { font-size: 14px; color: var(--cream-dim); line-height: 1.7; }
+
+    /* ── BLOG SECTION ── */
+    .blog-section { padding: 80px 60px; max-width: 1100px; margin: 0 auto; }
+    .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--navy-border); margin-top: 40px; }
+    .blog-card { background: var(--navy); padding: 28px; transition: background .15s; }
+    .blog-card:hover { background: var(--navy-mid); }
+    .blog-card-category { font-family: var(--mono); font-size: 10px; color: var(--amber); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 12px; }
+    .blog-card-img { width: 100%; height: 160px; object-fit: cover; margin-bottom: 16px; display: block; }
+    .blog-card-title { font-family: var(--serif); font-size: 18px; color: var(--white); font-weight: 700; line-height: 1.3; margin-bottom: 10px; }
+    .blog-card-excerpt { font-size: 13px; color: var(--cream-dim); line-height: 1.6; margin-bottom: 16px; }
+    .blog-card-link { font-family: var(--mono); font-size: 11px; color: var(--amber); letter-spacing: .06em; text-transform: uppercase; }
+    .blog-card-link:hover { color: var(--amber-light); }
+    .blog-view-all { text-align: center; margin-top: 32px; }
+    .blog-view-all a { font-family: var(--mono); font-size: 11px; color: var(--amber); letter-spacing: .08em; text-transform: uppercase; border: 1px solid var(--navy-border); padding: 12px 32px; display: inline-block; transition: border-color .15s; }
+    .blog-view-all a:hover { border-color: var(--amber); color: var(--amber-light); }
+
+    /* ── FINAL CTA ── */
+    .final-cta { text-align: center; padding: 80px 60px; border-top: 1px solid var(--navy-border); }
+    .final-cta-title { font-family: var(--serif); font-size: clamp(32px, 4vw, 52px); font-weight: 900; color: var(--white); margin-bottom: 16px; }
+    .final-cta-sub { font-size: 16px; color: var(--cream-dim); margin-bottom: 32px; }
+    .final-cta-btn { display: inline-block; background: var(--amber); color: var(--navy); font-family: var(--mono); font-size: 12px; font-weight: 500; padding: 18px 48px; letter-spacing: .08em; text-transform: uppercase; transition: background .15s; }
+    .final-cta-btn:hover { background: var(--amber-light); color: var(--navy); }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid var(--navy-border); padding: 24px 60px; display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: 10px; color: #444; }
+    footer a { color: #555; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .hero-content { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
+      section, .blog-section { padding: 60px 24px; }
+      .features-grid, .industries-grid, .steps, .faq-grid, .blog-grid { grid-template-columns: 1fr; }
+      .order-wrap { grid-template-columns: 1fr; }
+      .sample-data-grid { grid-template-columns: 1fr; }
+      .final-cta { padding: 60px 24px; }
+      footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span class="ticker-item"><span>HVAC ▸</span> Indianapolis market — 847 active businesses, avg revenue $1.2M</span>
+    <span class="ticker-item"><span>RESTAURANT ▸</span> Denver market — 2,340 active businesses, 12% growth YoY</span>
+    <span class="ticker-item"><span>PLUMBING ▸</span> Dallas market — 1,102 active businesses, labor shortage flagged</span>
+    <span class="ticker-item"><span>LANDSCAPING ▸</span> Phoenix market — seasonal demand peaks April–October</span>
+    <span class="ticker-item"><span>AUTO REPAIR ▸</span> Columbus market — 423 competitors, pricing pressure moderate</span>
+    <span class="ticker-item"><span>HVAC ▸</span> Indianapolis market — 847 active businesses, avg revenue $1.2M</span>
+    <span class="ticker-item"><span>RESTAURANT ▸</span> Denver market — 2,340 active businesses, 12% growth YoY</span>
+    <span class="ticker-item"><span>PLUMBING ▸</span> Dallas market — 1,102 active businesses, labor shortage flagged</span>
+    <span class="ticker-item"><span>LANDSCAPING ▸</span> Phoenix market — seasonal demand peaks April–October</span>
+    <span class="ticker-item"><span>AUTO REPAIR ▸</span> Columbus market — 423 competitors, pricing pressure moderate</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Clear<em>Market</em>Report</div>
+  <div class="nav-links">
+    <a href="#features">What's Inside</a>
+    <a href="#industries">Industries</a>
+    <a href="#how">How It Works</a>
+    <a href="#blog">Resources</a>
+    <a href="#order" class="nav-cta">Get Your Report →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&h=900&fit=crop&auto=format" alt="local market analysis for small business owners">
+  </div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-kicker">AI-Generated Market Intelligence</div>
+      <h1 class="hero-title">Know your market before your <em>competitors</em> do.</h1>
+      <p class="hero-sub">A professional local market analysis report for your industry and city — generated in minutes by AI, not a $5,000 consultant. Competitive landscape, pricing benchmarks, demand trends, and opportunity gaps.</p>
+      <a href="#order" class="hero-cta">Get Your Report — $147 →</a>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">15+</div>
+          <div class="hero-stat-label">Pages of analysis</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">&lt;10</div>
+          <div class="hero-stat-label">Minutes to deliver</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">200+</div>
+          <div class="hero-stat-label">Industries covered</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">$147</div>
+          <div class="hero-stat-label">One-time, no sub</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ORDER -->
+<section id="order">
+  <div class="section-label">Order Your Report</div>
+  <h2 class="section-title">Local market intelligence, delivered in minutes</h2>
+  <p class="section-sub">Enter your industry and city. Pay once. Get a professional market analysis report in your inbox within 10 minutes.</p>
+  <div class="order-wrap">
+    <div>
+      <div class="live-badge">Live · Reports generating now</div>
+      <div class="order-form-group">
+        <label class="order-label">Your industry</label>
+        <input class="order-input" type="text" placeholder="e.g. HVAC, Restaurant, Plumbing, Auto Repair" readonly>
+      </div>
+      <div class="order-form-group">
+        <label class="order-label">Your city and state</label>
+        <input class="order-input" type="text" placeholder="e.g. Indianapolis, IN" readonly>
+      </div>
+      <div class="order-form-group">
+        <label class="order-label">Your email — report delivered here</label>
+        <input class="order-input" type="email" placeholder="you@yourbusiness.com" readonly>
+      </div>
+      <div class="order-summary">
+        <div class="order-summary-row"><span>Report total</span><span>✓ No subscription. No recurring charges.</span></div>
+        <div class="order-summary-total"><span>$147</span><span>one-time</span></div>
+      </div>
+      <a href="https://buy.stripe.com/bJe6oHb9z6dB2Ua74feIw07" class="order-btn">Order Report Now →</a>
+      <div class="order-guarantee">100% money-back guarantee if your report doesn't arrive within 15 minutes.</div>
+    </div>
+    <div>
+      <div class="order-right-title">What you'll receive</div>
+      <div class="order-feature">
+        <div class="order-feature-num">01</div>
+        <div>
+          <div class="order-feature-title">Local competitive landscape</div>
+          <div class="order-feature-desc">How many competitors are operating in your city, how they're positioned, and where the gaps are.</div>
+        </div>
+      </div>
+      <div class="order-feature">
+        <div class="order-feature-num">02</div>
+        <div>
+          <div class="order-feature-title">Pricing benchmarks</div>
+          <div class="order-feature-desc">What the market charges for your services. Where you're likely over or underpriced relative to local demand.</div>
+        </div>
+      </div>
+      <div class="order-feature">
+        <div class="order-feature-num">03</div>
+        <div>
+          <div class="order-feature-title">Demand trend analysis</div>
+          <div class="order-feature-desc">Is your market growing, flat, or contracting? Seasonal patterns, economic drivers, and 12-month outlook.</div>
+        </div>
+      </div>
+      <div class="order-feature">
+        <div class="order-feature-num">04</div>
+        <div>
+          <div class="order-feature-title">Opportunity gap analysis</div>
+          <div class="order-feature-desc">Underserved customer segments, unmet service needs, and specific openings your competitors have left on the table.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-label">01 — What's inside every report</div>
+  <h2 class="section-title">Eight sections of locally-specific intelligence</h2>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-num">01</div>
+      <div class="feature-title">Local competitive landscape</div>
+      <div class="feature-desc">How many competitors are operating in your city, how they're positioned, and where the gaps are.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">02</div>
+      <div class="feature-title">Pricing benchmarks</div>
+      <div class="feature-desc">What the market charges for your services. Where you're likely over or underpriced relative to local demand.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">03</div>
+      <div class="feature-title">Demand trend analysis</div>
+      <div class="feature-desc">Is your market growing, flat, or contracting? Seasonal patterns, economic drivers, and 12-month outlook.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">04</div>
+      <div class="feature-title">Customer demographics</div>
+      <div class="feature-desc">Who is buying in your market — household income, age brackets, spending behavior, and geographic concentration.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">05</div>
+      <div class="feature-title">Opportunity gap analysis</div>
+      <div class="feature-desc">Underserved customer segments, unmet service needs, and specific openings your competitors have left on the table.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">06</div>
+      <div class="feature-title">Risk factors</div>
+      <div class="feature-desc">The top 3 risks for a business in your specific industry and city — so you can plan around them.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">07</div>
+      <div class="feature-title">Target customer profile</div>
+      <div class="feature-desc">A detailed profile of your ideal local customer — who they are, what they care about, and how to reach them.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">08</div>
+      <div class="feature-title">90-day action plan</div>
+      <div class="feature-desc">Five specific, prioritized actions you can take immediately based on your market's current conditions.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SAMPLE -->
+<section>
+  <div class="section-label">02 — Sample report excerpt</div>
+  <h2 class="section-title">See what you're getting</h2>
+  <div class="sample-wrap">
+    <div class="sample-header">
+      <div>
+        <div class="sample-co">ClearMarketReport</div>
+        <div class="sample-meta">Generated 03.27.2026 · 8 sections</div>
+      </div>
+      <div style="text-align:right">
+        <div class="sample-co">HVAC / Indianapolis, IN</div>
+        <div class="sample-meta">Market Analysis Report</div>
+      </div>
+    </div>
+    <h3 class="sample-title">HVAC Market Analysis — Indianapolis Metro</h3>
+    <div class="sample-conf">Confidential · Prepared for: Sample Business Owner</div>
+    <div class="sample-section-title">Executive Summary</div>
+    <p class="sample-body">The Indianapolis HVAC market presents a moderately competitive landscape with 847 licensed contractors operating in the metro area. Demand is trending upward driven by aging residential infrastructure (median home age: 42 years) and commercial construction activity. The market supports pricing 8–12% above national averages for residential service calls.</p>
+    <div class="sample-section-title">Key Market Indicators</div>
+    <div class="sample-data-grid">
+      <div class="sample-data-cell"><div class="sample-data-label">Active licensed contractors (Marion Co.)</div><div class="sample-data-val">847</div></div>
+      <div class="sample-data-cell"><div class="sample-data-label">Avg residential service call rate</div><div class="sample-data-val">$185–$240/hr</div></div>
+      <div class="sample-data-cell"><div class="sample-data-label">New construction permits YTD</div><div class="sample-data-val">+14% YoY</div></div>
+      <div class="sample-data-cell"><div class="sample-data-label">Median household income (target demo)</div><div class="sample-data-val">$68,400</div></div>
+      <div class="sample-data-cell"><div class="sample-data-label">Largest competitor by review volume</div><div class="sample-data-val sample-redacted">████████</div></div>
+      <div class="sample-data-cell"><div class="sample-data-label">Primary underserved zip codes</div><div class="sample-data-val sample-redacted">████, ████</div></div>
+    </div>
+    <div class="sample-cta">Full 8-section report unlocks after purchase. · <a href="#order">Order yours for $147 →</a></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- INDUSTRIES -->
+<section id="industries">
+  <div class="section-label">03 — Works for any local business</div>
+  <h2 class="section-title">200+ industries covered</h2>
+  <div class="industries-grid">
+    <div class="industry-card"><div class="industry-name">HVAC</div><div class="industry-sub">Heating, cooling, ductwork</div></div>
+    <div class="industry-card"><div class="industry-name">Restaurant</div><div class="industry-sub">Dining, fast casual, catering</div></div>
+    <div class="industry-card"><div class="industry-name">Plumbing</div><div class="industry-sub">Residential & commercial</div></div>
+    <div class="industry-card"><div class="industry-name">Auto Repair</div><div class="industry-sub">Service, body, tires</div></div>
+    <div class="industry-card"><div class="industry-name">Landscaping</div><div class="industry-sub">Lawn, design, irrigation</div></div>
+    <div class="industry-card"><div class="industry-name">Roofing</div><div class="industry-sub">Residential, commercial</div></div>
+    <div class="industry-card"><div class="industry-name">Dental</div><div class="industry-sub">General, specialist practices</div></div>
+    <div class="industry-card"><div class="industry-name">Retail</div><div class="industry-sub">Specialty, boutique, hardware</div></div>
+    <div class="industry-card"><div class="industry-name">Electrical</div><div class="industry-sub">Residential & commercial</div></div>
+    <div class="industry-card"><div class="industry-name">Fitness</div><div class="industry-sub">Gym, studio, personal training</div></div>
+    <div class="industry-card"><div class="industry-name">Childcare</div><div class="industry-sub">Daycare, after-school</div></div>
+    <div class="industry-card"><div class="industry-name">Your industry</div><div class="industry-sub">200+ categories supported</div></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="section-label">04 — How it works</div>
+  <h2 class="section-title">From order to inbox in under 10 minutes</h2>
+  <div class="steps">
+    <div class="step"><div class="step-num">01</div><div class="step-title">Enter your details</div><div class="step-desc">Tell us your industry and city. Takes 60 seconds. No account needed.</div></div>
+    <div class="step"><div class="step-num">02</div><div class="step-title">Pay once</div><div class="step-desc">$147 flat. Processed securely through Stripe. No subscription. No hidden fees.</div></div>
+    <div class="step"><div class="step-num">03</div><div class="step-title">AI generates your report</div><div class="step-desc">Our AI analyzes your local market — competitors, pricing, demand, opportunities.</div></div>
+    <div class="step"><div class="step-num">04</div><div class="step-title">Report arrives in minutes</div><div class="step-desc">A professional report lands in your inbox within 10 minutes. Start using it today.</div></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- FAQ -->
+<section>
+  <div class="section-label">05 — Common questions</div>
+  <h2 class="section-title">Everything you need to know</h2>
+  <div class="faq-grid">
+    <div class="faq-item">
+      <div class="faq-q">How is this different from googling my market?</div>
+      <div class="faq-a">Googling gives you fragments — a Yelp page here, a news article there. Our report synthesizes local competitor data, pricing benchmarks, demographic analysis, and demand trends into a single structured document written specifically for your industry and city.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Is the data actually local — or just generic industry stats?</div>
+      <div class="faq-a">The report is built around your specific city and industry combination. A report for HVAC in Indianapolis will look very different from one for HVAC in Miami. Every section is localized.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What if I'm not happy with it?</div>
+      <div class="faq-a">Full refund, no questions asked, within 48 hours of delivery. We'd rather give you your $147 back than have you walk away unsatisfied.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Can I order reports for multiple cities or industries?</div>
+      <div class="faq-a">Yes — each report is $147. Many owners order one for their current market and one for a market they're considering expanding into.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- BLOG -->
+<div class="blog-section" id="blog">
+  <div class="section-label">Market Research Resources</div>
+  <h2 class="section-title">Guides for small business owners</h2>
+  <p class="section-sub">Practical market analysis guides — without the consultant price tag.</p>
+  <div class="blog-grid">
+    <div class="blog-card">
+      <div class="blog-card-category">Market Research</div>
+      <img class="blog-card-img" src="https://images.unsplash.com/photo-1459257831348-f0cdd359235f?w=600&h=320&fit=crop&auto=format" alt="how to do a market analysis for a small business">
+      <div class="blog-card-title">How to Do a Market Analysis for a Small Business</div>
+      <div class="blog-card-excerpt">Learn how to research your local market in 7 steps — customers, competitors, pricing, demand, and opportunity gaps.</div>
+      <a href="/blog/how-to-do-a-market-analysis.html" class="blog-card-link">Read guide →</a>
+    </div>
+    <div class="blog-card">
+      <div class="blog-card-category">Pricing</div>
+      <img class="blog-card-img" src="https://images.unsplash.com/photo-1554224155-8d04cb9e8c7d?w=600&h=320&fit=crop&auto=format" alt="how much does a market analysis cost">
+      <div class="blog-card-title">How Much Does a Market Analysis Cost?</div>
+      <div class="blog-card-excerpt">From free DIY research to $15,000 consulting — a complete breakdown of market analysis pricing options.</div>
+      <a href="/blog/how-much-does-a-market-analysis-cost.html" class="blog-card-link">Read guide →</a>
+    </div>
+    <div class="blog-card">
+      <div class="blog-card-category">Competitive Analysis</div>
+      <img class="blog-card-img" src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=600&h=320&fit=crop&auto=format" alt="how to analyze competition small business">
+      <div class="blog-card-title">How to Analyze Your Competition as a Small Business</div>
+      <div class="blog-card-excerpt">A structured approach to understanding your competitors — who they are, where they're weak, and how you win.</div>
+      <a href="/blog/how-to-analyze-competition-small-business.html" class="blog-card-link">Read guide →</a>
+    </div>
+    <div class="blog-card">
+      <div class="blog-card-category">Restaurant Industry</div>
+      <img class="blog-card-img" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=320&fit=crop&auto=format" alt="local market analysis for restaurants">
+      <div class="blog-card-title">Local Market Analysis for Restaurants</div>
+      <div class="blog-card-excerpt">Before you sign a lease — what a restaurant market analysis should tell you about foot traffic, competition, and demand.</div>
+      <a href="/blog/local-market-analysis-restaurants.html" class="blog-card-link">Read guide →</a>
+    </div>
+    <div class="blog-card">
+      <div class="blog-card-category">HVAC Industry</div>
+      <img class="blog-card-img" src="https://images.unsplash.com/photo-1621905251189-8f71ae4f2f3b?w=600&h=320&fit=crop&auto=format" alt="hvac market analysis local opportunity">
+      <div class="blog-card-title">HVAC Market Analysis: How to Size Your Local Opportunity</div>
+      <div class="blog-card-excerpt">How HVAC contractors can assess local demand, benchmark competitors, and identify market gaps before investing in growth.</div>
+      <a href="/blog/hvac-market-analysis.html" class="blog-card-link">Read guide →</a>
+    </div>
+    <div class="blog-card" style="display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:280px;text-align:center;">
+      <div class="blog-card-category">All Guides</div>
+      <div class="blog-card-title" style="margin-bottom:16px;">More market research guides</div>
+      <a href="/blog/" class="blog-card-link">View all resources →</a>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- FINAL CTA -->
+<div class="final-cta">
+  <h2 class="final-cta-title">Stop guessing. Start knowing.</h2>
+  <p class="final-cta-sub">8 sections of local market intelligence. Delivered in under 10 minutes. $147, one time.</p>
+  <a href="#order" class="final-cta-btn">Get Your Market Report →</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 ClearMarketReport · All rights reserved</span>
+  <span>AI-powered · Delivered by email · 100% money-back guarantee</span>
+</footer>
+
+</body>
+</html>
